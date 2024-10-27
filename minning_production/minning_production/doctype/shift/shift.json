@@ -1,0 +1,291 @@
+{
+ "actions": [],
+ "autoname": "format:SHIFT-{#}",
+ "creation": "2024-10-25 11:54:02.422936",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "operator",
+  "unit",
+  "column_break_gpdw",
+  "tipe_shift",
+  "tanggal_shift",
+  "section_break_cxth",
+  "hour_meter_start",
+  "column_break_curj",
+  "hour_meter_stop",
+  "jam_produksi_section",
+  "jam_produksi_start",
+  "column_break_fmsy",
+  "jam_produksi_stop",
+  "report_section",
+  "total_hm",
+  "total_ritasi",
+  "total_stb_act_menit",
+  "column_break_alze",
+  "total_jam_produksi",
+  "unk_standby_menit",
+  "total_bd_menit",
+  "section_break_udbc",
+  "pa",
+  "column_break_zczh",
+  "bd",
+  "column_break_mmcv",
+  "ua",
+  "section_break_fwzk",
+  "pa_",
+  "column_break_cctx",
+  "ua_",
+  "column_break_onqh",
+  "bd_",
+  "section_break_qrat",
+  "remark",
+  "section_break_yqsg",
+  "dibuat_oleh",
+  "column_break_eydd",
+  "ditandatangani_oleh"
+ ],
+ "fields": [
+  {
+   "fieldname": "unit",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Unit",
+   "options": "Unit",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_gpdw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tipe_shift",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Tipe Shift",
+   "options": "Day (S1)\nNight (S2)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "tanggal_shift",
+   "fieldtype": "Date",
+   "label": "Tanggal Shift",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_cxth",
+   "fieldtype": "Section Break",
+   "label": "Hour Meter"
+  },
+  {
+   "fieldname": "column_break_curj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_yqsg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "dibuat_oleh",
+   "fieldtype": "Data",
+   "label": "Dibuat Oleh"
+  },
+  {
+   "fieldname": "column_break_eydd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ditandatangani_oleh",
+   "fieldtype": "Data",
+   "label": "Ditandatangani Oleh"
+  },
+  {
+   "fieldname": "operator",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Operator",
+   "reqd": 1
+  },
+  {
+   "fieldname": "hour_meter_start",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Start",
+   "reqd": 1
+  },
+  {
+   "fieldname": "hour_meter_stop",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Stop"
+  },
+  {
+   "fieldname": "jam_produksi_section",
+   "fieldtype": "Section Break",
+   "label": "Jam Produksi"
+  },
+  {
+   "fieldname": "jam_produksi_start",
+   "fieldtype": "Time",
+   "label": "Start"
+  },
+  {
+   "fieldname": "column_break_fmsy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "jam_produksi_stop",
+   "fieldtype": "Time",
+   "label": "Stop"
+  },
+  {
+   "fieldname": "report_section",
+   "fieldtype": "Section Break",
+   "label": "Report"
+  },
+  {
+   "default": "-",
+   "fieldname": "total_hm",
+   "fieldtype": "Data",
+   "label": "Total HM",
+   "read_only": 1
+  },
+  {
+   "default": "-",
+   "fieldname": "total_ritasi",
+   "fieldtype": "Data",
+   "label": "Total Ritasi",
+   "read_only": 1
+  },
+  {
+   "default": "-",
+   "fieldname": "total_stb_act_menit",
+   "fieldtype": "Data",
+   "label": "Total STB ACT (Menit)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_alze",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "-",
+   "fieldname": "total_jam_produksi",
+   "fieldtype": "Data",
+   "label": "Total Jam Produksi",
+   "read_only": 1
+  },
+  {
+   "default": "-",
+   "fieldname": "total_bd_menit",
+   "fieldtype": "Data",
+   "label": "Total BD (Menit)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_fwzk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "pa_",
+   "fieldtype": "Data",
+   "label": "PA (%)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_cctx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ua_",
+   "fieldtype": "Data",
+   "label": "UA (%)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_onqh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bd_",
+   "fieldtype": "Data",
+   "label": "BD (%)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_qrat",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "remark",
+   "fieldtype": "Text",
+   "label": "Remark"
+  },
+  {
+   "default": "-",
+   "fieldname": "unk_standby_menit",
+   "fieldtype": "Data",
+   "label": "UNK Standby (Menit)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_udbc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "100",
+   "fieldname": "pa",
+   "fieldtype": "Percent",
+   "label": "PA",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_zczh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "bd",
+   "fieldtype": "Percent",
+   "label": "BD",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_mmcv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "ua",
+   "fieldtype": "Percent",
+   "label": "UA",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-10-26 21:48:26.808339",
+ "modified_by": "Administrator",
+ "module": "Minning Production",
+ "name": "Shift",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

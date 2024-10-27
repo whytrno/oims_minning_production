@@ -1,0 +1,98 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:SERVICE-{#}",
+ "creation": "2024-10-25 12:01:48.450011",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "unit",
+  "mekanik",
+  "jenis_service",
+  "lokasi",
+  "column_break_yemm",
+  "estimasi_waktu_perbaikan",
+  "jam_mulai",
+  "jam_selesai"
+ ],
+ "fields": [
+  {
+   "fieldname": "unit",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Unit",
+   "options": "Unit",
+   "reqd": 1
+  },
+  {
+   "fieldname": "mekanik",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Mekanik",
+   "reqd": 1
+  },
+  {
+   "fieldname": "jenis_service",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Jenis Service",
+   "options": "Service Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "lokasi",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Lokasi",
+   "options": "Location",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_yemm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "estimasi_waktu_perbaikan",
+   "fieldtype": "Time",
+   "label": "Estimasi Waktu Perbaikan",
+   "reqd": 1
+  },
+  {
+   "fieldname": "jam_mulai",
+   "fieldtype": "Time",
+   "label": "Jam Mulai",
+   "reqd": 1
+  },
+  {
+   "fieldname": "jam_selesai",
+   "fieldtype": "Time",
+   "label": "Jam Selesai",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-10-25 14:04:08.433974",
+ "modified_by": "Administrator",
+ "module": "Minning Production",
+ "name": "Service",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

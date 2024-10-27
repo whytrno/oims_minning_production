@@ -1,0 +1,93 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:SA-{#}",
+ "creation": "2024-10-25 11:57:03.720426",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "shift",
+  "aktifitas_tab",
+  "aktifitas_delay",
+  "aktifitas_idle",
+  "aktifitas_produktif_tab",
+  "aktifitas_produktif",
+  "aktifitas_maintenance_tab",
+  "aktifitas_maintenance"
+ ],
+ "fields": [
+  {
+   "fieldname": "shift",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Shift",
+   "options": "Shift",
+   "reqd": 1
+  },
+  {
+   "fieldname": "aktifitas_tab",
+   "fieldtype": "Tab Break",
+   "label": "Aktifitas Tidak Produktif"
+  },
+  {
+   "fieldname": "aktifitas_produktif_tab",
+   "fieldtype": "Tab Break",
+   "label": "Aktifitas Produktif"
+  },
+  {
+   "fieldname": "aktifitas_produktif",
+   "fieldtype": "Table",
+   "label": "Aktifitas Produktif",
+   "options": "Productive Time Shift Activity Table"
+  },
+  {
+   "fieldname": "aktifitas_maintenance_tab",
+   "fieldtype": "Tab Break",
+   "label": "Aktifitas Maintenance"
+  },
+  {
+   "fieldname": "aktifitas_maintenance",
+   "fieldtype": "Table",
+   "label": "Aktifitas Maintenance",
+   "options": "Maintenance Time Shift Activity Table"
+  },
+  {
+   "fieldname": "aktifitas_delay",
+   "fieldtype": "Table",
+   "label": "Aktifitas Delay",
+   "options": "Delay Time Shift Activity Table"
+  },
+  {
+   "fieldname": "aktifitas_idle",
+   "fieldtype": "Table",
+   "label": "Aktifitas Idle",
+   "options": "Idle Time Shift Activity Table"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-10-26 16:30:16.197657",
+ "modified_by": "Administrator",
+ "module": "Minning Production",
+ "name": "Shift Activity",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

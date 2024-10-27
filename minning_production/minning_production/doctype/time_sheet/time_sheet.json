@@ -1,0 +1,83 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-10-26 11:33:00.881219",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "shift",
+  "column_break_jyep",
+  "tanggal",
+  "aktifitas_section",
+  "aktifitas_produktif",
+  "aktifitas_tidak_produktif",
+  "aktifitas_maintenance"
+ ],
+ "fields": [
+  {
+   "fieldname": "shift",
+   "fieldtype": "Link",
+   "label": "Shift",
+   "options": "Shift"
+  },
+  {
+   "fieldname": "column_break_jyep",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tanggal",
+   "fieldtype": "Date",
+   "label": "Tanggal"
+  },
+  {
+   "fieldname": "aktifitas_section",
+   "fieldtype": "Section Break",
+   "label": "Aktifitas"
+  },
+  {
+   "fieldname": "aktifitas_produktif",
+   "fieldtype": "Table",
+   "label": "Aktifitas Produktif",
+   "options": "Productive Time Shift Activity Table",
+   "reqd": 1
+  },
+  {
+   "fieldname": "aktifitas_tidak_produktif",
+   "fieldtype": "Table",
+   "label": "Aktifitas Tidak Produktif",
+   "options": "Unproductive Time Shift Activity Table",
+   "reqd": 1
+  },
+  {
+   "fieldname": "aktifitas_maintenance",
+   "fieldtype": "Table",
+   "label": "Aktifitas Maintenance",
+   "options": "Maintenance Time Shift Activity Table",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-10-26 11:49:39.234826",
+ "modified_by": "Administrator",
+ "module": "Minning Production",
+ "name": "Time Sheet",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

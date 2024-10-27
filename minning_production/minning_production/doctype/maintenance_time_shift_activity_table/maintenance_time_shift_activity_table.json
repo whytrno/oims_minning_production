@@ -1,0 +1,72 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-10-26 11:47:42.659923",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "aktifitas",
+  "section_break_skcb",
+  "waktu_mulai",
+  "column_break_cvll",
+  "waktu_selesai",
+  "column_break_jmjz",
+  "menit"
+ ],
+ "fields": [
+  {
+   "fieldname": "aktifitas",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Aktifitas",
+   "link_filters": "[[\"Shift Activity Type\",\"type\",\"=\",\"Maintenance\"]]",
+   "options": "Shift Activity Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_skcb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "waktu_mulai",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "Waktu Mulai"
+  },
+  {
+   "fieldname": "column_break_cvll",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "waktu_selesai",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "Waktu Selesai"
+  },
+  {
+   "fieldname": "column_break_jmjz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "menit",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Menit",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-10-26 15:31:34.340591",
+ "modified_by": "Administrator",
+ "module": "Minning Production",
+ "name": "Maintenance Time Shift Activity Table",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
