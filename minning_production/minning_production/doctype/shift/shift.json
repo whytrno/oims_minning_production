@@ -18,6 +18,22 @@
   "jam_produksi_start",
   "column_break_fmsy",
   "jam_produksi_stop",
+  "section_break_qrat",
+  "remark",
+  "section_break_yqsg",
+  "dibuat_oleh",
+  "column_break_eydd",
+  "ditandatangani_oleh",
+  "aktifitas_tidak_produktif_tab",
+  "aktifitas_delay",
+  "aktifitas_idle",
+  "maintenance_tab",
+  "aktifitas_maintenance",
+  "refueling_tab",
+  "refueling_data",
+  "ritase_tab",
+  "data_ritase",
+  "report_tab",
   "report_section",
   "total_hm",
   "total_ritasi",
@@ -31,19 +47,7 @@
   "column_break_zczh",
   "bd",
   "column_break_mmcv",
-  "ua",
-  "section_break_fwzk",
-  "pa_",
-  "column_break_cctx",
-  "ua_",
-  "column_break_onqh",
-  "bd_",
-  "section_break_qrat",
-  "remark",
-  "section_break_yqsg",
-  "dibuat_oleh",
-  "column_break_eydd",
-  "ditandatangani_oleh"
+  "ua"
  ],
  "fields": [
   {
@@ -108,14 +112,14 @@
   },
   {
    "fieldname": "hour_meter_start",
-   "fieldtype": "Float",
+   "fieldtype": "Int",
    "in_list_view": 1,
    "label": "Start",
    "reqd": 1
   },
   {
    "fieldname": "hour_meter_stop",
-   "fieldtype": "Float",
+   "fieldtype": "Int",
    "in_list_view": 1,
    "label": "Stop"
   },
@@ -183,36 +187,6 @@
    "read_only": 1
   },
   {
-   "fieldname": "section_break_fwzk",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "pa_",
-   "fieldtype": "Data",
-   "label": "PA (%)",
-   "read_only": 1
-  },
-  {
-   "fieldname": "column_break_cctx",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "ua_",
-   "fieldtype": "Data",
-   "label": "UA (%)",
-   "read_only": 1
-  },
-  {
-   "fieldname": "column_break_onqh",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "bd_",
-   "fieldtype": "Data",
-   "label": "BD (%)",
-   "read_only": 1
-  },
-  {
    "fieldname": "section_break_qrat",
    "fieldtype": "Section Break"
   },
@@ -236,7 +210,7 @@
    "default": "100",
    "fieldname": "pa",
    "fieldtype": "Percent",
-   "label": "PA",
+   "label": "PA (%)",
    "read_only": 1
   },
   {
@@ -247,7 +221,7 @@
    "default": "0",
    "fieldname": "bd",
    "fieldtype": "Percent",
-   "label": "BD",
+   "label": "BD (%)",
    "read_only": 1
   },
   {
@@ -258,13 +232,68 @@
    "default": "0",
    "fieldname": "ua",
    "fieldtype": "Percent",
-   "label": "UA",
+   "label": "UA (%)",
    "read_only": 1
+  },
+  {
+   "fieldname": "aktifitas_tidak_produktif_tab",
+   "fieldtype": "Tab Break",
+   "label": "Aktifitas Tidak Produktif"
+  },
+  {
+   "fieldname": "aktifitas_delay",
+   "fieldtype": "Table",
+   "label": "Aktifitas Delay",
+   "options": "Delay Time Shift Activity Table"
+  },
+  {
+   "fieldname": "aktifitas_idle",
+   "fieldtype": "Table",
+   "label": "Aktifitas Idle",
+   "options": "Idle Time Shift Activity Table"
+  },
+  {
+   "fieldname": "maintenance_tab",
+   "fieldtype": "Tab Break",
+   "label": "Maintenance"
+  },
+  {
+   "fieldname": "aktifitas_maintenance",
+   "fieldtype": "Table",
+   "label": "Aktifitas Maintenance",
+   "options": "Maintenance Time Shift Activity Table"
+  },
+  {
+   "fieldname": "refueling_tab",
+   "fieldtype": "Tab Break",
+   "label": "Refueling"
+  },
+  {
+   "fieldname": "refueling_data",
+   "fieldtype": "Table",
+   "label": "Refueling Data",
+   "options": "Fueling Table"
+  },
+  {
+   "fieldname": "ritase_tab",
+   "fieldtype": "Tab Break",
+   "label": "Ritase"
+  },
+  {
+   "fieldname": "data_ritase",
+   "fieldtype": "Table",
+   "label": "Data Ritase",
+   "options": "Ritase Table"
+  },
+  {
+   "fieldname": "report_tab",
+   "fieldtype": "Tab Break",
+   "label": "Report"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-26 21:48:26.808339",
+ "modified": "2024-10-29 10:08:58.707136",
  "modified_by": "Administrator",
  "module": "Minning Production",
  "name": "Shift",
@@ -284,7 +313,6 @@
    "write": 1
   }
  ],
- "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

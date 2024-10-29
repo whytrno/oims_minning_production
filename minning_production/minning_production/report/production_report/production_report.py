@@ -3,22 +3,110 @@
 
 import frappe
 from frappe import _
+from frappe.query_builder.functions import Count, Extract, Sum
+from frappe.utils import cint, cstr, getdate, add_days, date_diff
 
-def execute(filters=None):
+Filters = frappe._dict
+
+def execute(filters=Filters):
+    # if not (filters.month and filters.year):
+    #     filters.month, filters.year = getdate().month, getdate().year
+        
     chart_data = get_chart_data(filters)
-    return chart_data, []
+    columns = get_columns()
+    data = frappe.get_all("Shift", fields=["name", "operator", "total_hm", "total_jam_produksi", "total_ritasi", "unk_standby_menit", "total_stb_act_menit", "total_bd_menit", "ua", "pa", "bd"], filters=filters)
+    
+    return columns, data, None, chart_data
+
+def get_columns():
+    return [
+        {
+            "label": _("Shift"),
+            "fieldname": "name",
+            "fieldtype": "Link",
+            "options": "Shift",
+            "width": 100
+        },
+        {
+            "label": _("Operator"),
+            "fieldname": "operator",
+            "fieldtype": "Data",
+            "width": 100
+        },
+        {
+            "label": _("Total HM"),
+            "fieldname": "total_hm",
+            "fieldtype": "Float",
+            "width": 100
+        },
+        {
+            "label": _("Total Jam Produksi"),
+            "fieldname": "total_jam_produksi",
+            "fieldtype": "Float",
+            "width": 100
+        },
+        {
+            "label": _("Total Ritasi"),
+            "fieldname": "total_ritasi",
+            "fieldtype": "Float",
+            "width": 100
+        },
+        {
+            "label": _("UNK Standby Menit"),
+            "fieldname": "unk_standby_menit",
+            "fieldtype": "Int",
+            "width": 100
+        },
+        {
+            "label": _("Total Standby Aktif"),
+            "fieldname": "total_stb_act_menit",
+            "fieldtype": "Int",
+            "width": 100
+        },
+        {
+            "label": _("Total Breakdown"),
+            "fieldname": "total_bd_menit",
+            "fieldtype": "Int",
+            "width": 100
+        },
+        {
+            "label": _("UA"),
+            "fieldname": "ua",
+            "fieldtype": "Percent",
+            "width": 100
+        },
+        {
+            "label": _("PA"),
+            "fieldname": "pa",
+            "fieldtype": "Percent",
+            "width": 100
+        },
+        {
+            "label": _("BD"),
+            "fieldname": "bd",
+            "fieldtype": "Percent",
+            "width": 100
+        }
+    ]
 
 def get_chart_data(filters):
-    data = frappe.get_all("Shift", fields=["ua", "pa", "bd"])
-    print(data);
-    
+    data = frappe.get_all("Shift", fields=["name", "ua", "pa", "bd"], filters=filters)
     chart_data = {
         "data": {
-            "labels": ["UA", "PA", "BD"],
+            "labels": [d.name for d in data],
             "datasets": [
-                {"name": _("UA"), "values": [d.ua for d in data]},
-                {"name": _("PA"), "values": [d.pa for d in data]},
-                {"name": _("BD"), "values": [d.bd for d in data]},
+                {
+                    "name": _("UA"),
+                    "values": [d.ua for d in data]
+                },
+                {
+                    "name": _("PA"),
+                    "values": [d.pa for d in data]
+                },
+                {
+                    "name": _("BD"),
+                    "values": [d.bd for d in data]
+                }
             ],
         },
         "type": "bar",
@@ -26,3 +114,17 @@ def get_chart_data(filters):
     }
     
     return chart_data
+
+@frappe.whitelist()
+def get_shift_years() -> str:
+    shift = frappe.qb.DocType("Shift")
+    year_list = (
+        frappe.qb.from_(shift).select(Extract("year", shift.creation).as_("year")).distinct()
+    ).run(as_dict=True)
+    
+    if year_list:
+        year_list.sort(key=lambda d: d.year, reverse=True)
+    else:
+        year_list = [frappe._dict({"year": getdate().year})]
+        
+    return "\n".join(cstr(entry.year) for entry in year_list)

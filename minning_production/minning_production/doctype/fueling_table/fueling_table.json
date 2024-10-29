@@ -1,0 +1,51 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-10-28 16:53:14.531626",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "pengisi_bahan_bakar",
+  "volume_litter",
+  "hm"
+ ],
+ "fields": [
+  {
+   "fieldname": "pengisi_bahan_bakar",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Pengisi Bahan Bakar",
+   "reqd": 1
+  },
+  {
+   "fieldname": "volume_litter",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Volume (Litter)",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "description": "Saat pengisian bahan bakar dilakukan",
+   "fieldname": "hm",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "HM",
+   "non_negative": 1,
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-10-29 10:06:35.937108",
+ "modified_by": "Administrator",
+ "module": "Minning Production",
+ "name": "Fueling Table",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

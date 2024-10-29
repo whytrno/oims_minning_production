@@ -8,7 +8,10 @@
  "field_order": [
   "unit_type",
   "unit_brand_model",
+  "column_break_cvdd",
+  "kelas",
   "no_lambung",
+  "section_break_tjki",
   "kondisi"
  ],
  "fields": [
@@ -40,11 +43,25 @@
    "fieldname": "kondisi",
    "fieldtype": "Text",
    "label": "Kondisi"
+  },
+  {
+   "fieldname": "kelas",
+   "fieldtype": "Data",
+   "label": "Kelas",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_cvdd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_tjki",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-25 12:12:08.816468",
+ "modified": "2024-10-29 10:10:16.353722",
  "modified_by": "Administrator",
  "module": "Minning Production",
  "name": "Unit",

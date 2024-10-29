@@ -1,0 +1,82 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-10-28 17:15:46.536915",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "jam",
+  "material",
+  "lokasi_front",
+  "lokasi_disposal",
+  "ritase",
+  "exavator"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "jam",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "Jam",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "material",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Material",
+   "options": "Material",
+   "reqd": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "lokasi_front",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Lokasi Front",
+   "options": "Location",
+   "reqd": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "lokasi_disposal",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Lokasi Disposal",
+   "options": "Location",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "ritase",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Ritase",
+   "reqd": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "exavator",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Exavator",
+   "options": "Unit",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-10-29 10:16:18.383693",
+ "modified_by": "Administrator",
+ "module": "Minning Production",
+ "name": "Ritase Table",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
