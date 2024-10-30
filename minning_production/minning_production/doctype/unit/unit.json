@@ -6,10 +6,11 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "merk_unit",
   "unit_type",
-  "unit_brand_model",
-  "column_break_cvdd",
   "kelas",
+  "column_break_cvdd",
+  "model",
   "no_lambung",
   "section_break_tjki",
   "kondisi"
@@ -19,16 +20,8 @@
    "fieldname": "unit_type",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Unit Type",
+   "label": "Jenis Alat",
    "options": "Unit Type",
-   "reqd": 1
-  },
-  {
-   "fieldname": "unit_brand_model",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Unit Brand Model",
-   "options": "Unit Brand Model",
    "reqd": 1
   },
   {
@@ -57,11 +50,24 @@
   {
    "fieldname": "section_break_tjki",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "merk_unit",
+   "fieldtype": "Link",
+   "label": "Merk Unit",
+   "options": "Merk Unit",
+   "reqd": 1
+  },
+  {
+   "fieldname": "model",
+   "fieldtype": "Data",
+   "label": "Model",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-29 10:10:16.353722",
+ "modified": "2024-10-29 13:56:00.333448",
  "modified_by": "Administrator",
  "module": "Minning Production",
  "name": "Unit",

@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class Fueling(Document):
+class MerkUnit(Document):
 	pass

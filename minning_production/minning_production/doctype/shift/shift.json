@@ -1,6 +1,6 @@
 {
  "actions": [],
- "autoname": "format:SHIFT-{#}",
+ "autoname": "format:{unit}-{tanggal_shift}-{tipe_shift}",
  "creation": "2024-10-25 11:54:02.422936",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -54,6 +54,7 @@
    "fieldname": "unit",
    "fieldtype": "Link",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Unit",
    "options": "Unit",
    "reqd": 1
@@ -73,6 +74,7 @@
   {
    "fieldname": "tanggal_shift",
    "fieldtype": "Date",
+   "in_standard_filter": 1,
    "label": "Tanggal Shift",
    "reqd": 1
   },
@@ -107,19 +109,20 @@
    "fieldname": "operator",
    "fieldtype": "Data",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Operator",
    "reqd": 1
   },
   {
    "fieldname": "hour_meter_start",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Start",
    "reqd": 1
   },
   {
    "fieldname": "hour_meter_stop",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Stop"
   },
@@ -165,8 +168,7 @@
    "default": "-",
    "fieldname": "total_stb_act_menit",
    "fieldtype": "Data",
-   "label": "Total STB ACT (Menit)",
-   "read_only": 1
+   "label": "Total STB ACT (Menit)"
   },
   {
    "fieldname": "column_break_alze",
@@ -176,7 +178,7 @@
    "default": "-",
    "fieldname": "total_jam_produksi",
    "fieldtype": "Data",
-   "label": "Total Jam Produksi",
+   "label": "Total Jam Operator",
    "read_only": 1
   },
   {
@@ -293,7 +295,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-29 10:08:58.707136",
+ "modified": "2024-10-30 08:39:36.051673",
  "modified_by": "Administrator",
  "module": "Minning Production",
  "name": "Shift",

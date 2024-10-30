@@ -1,24 +1,14 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:kode",
- "creation": "2024-10-25 11:50:11.811827",
+ "autoname": "field:nama",
+ "creation": "2024-10-29 12:20:13.017656",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "kode",
-  "nama",
-  "volume_sampling_vesel"
+  "nama"
  ],
  "fields": [
-  {
-   "fieldname": "kode",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Kode",
-   "reqd": 1,
-   "unique": 1
-  },
   {
    "fieldname": "nama",
    "fieldtype": "Data",
@@ -26,21 +16,14 @@
    "label": "Nama",
    "reqd": 1,
    "unique": 1
-  },
-  {
-   "allow_in_quick_entry": 1,
-   "fieldname": "volume_sampling_vesel",
-   "fieldtype": "Int",
-   "in_list_view": 1,
-   "label": "Volume Sampling Vesel"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-30 11:38:17.078485",
+ "modified": "2024-10-29 12:21:42.728762",
  "modified_by": "Administrator",
  "module": "Minning Production",
- "name": "Material",
+ "name": "Merk Unit",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [

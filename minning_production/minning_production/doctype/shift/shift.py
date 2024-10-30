@@ -24,7 +24,7 @@ class Shift(Document):
 def calculate_total_hm(hm_mulai, hm_selesai):
     if hm_mulai and hm_selesai:
         total_hm = float(hm_selesai) - float(hm_mulai)
-        return total_hm
+        return round(total_hm, 2)
     
 @frappe.whitelist()
 def calculate_total_jam_produksi(jam_produksi_mulai, jam_produksi_selesai):
@@ -51,7 +51,7 @@ def calculate_total_jam_produksi(jam_produksi_mulai, jam_produksi_selesai):
             if total_jam_produksi < 0:
                 total_jam_produksi += 24
 
-            return total_jam_produksi
+            return round(total_jam_produksi, 2)
         else:
             raise ValueError("jam_produksi_mulai dan jam_produksi_selesai harus berupa string waktu.")
     else:

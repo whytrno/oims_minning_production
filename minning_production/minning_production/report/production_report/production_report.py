@@ -36,37 +36,37 @@ def get_columns():
         {
             "label": _("Total HM"),
             "fieldname": "total_hm",
-            "fieldtype": "Float",
+            "fieldtype": "data",
             "width": 100
         },
         {
-            "label": _("Total Jam Produksi"),
+            "label": _("Total Jam Operator"),
             "fieldname": "total_jam_produksi",
-            "fieldtype": "Float",
+            "fieldtype": "data",
             "width": 100
         },
         {
             "label": _("Total Ritasi"),
             "fieldname": "total_ritasi",
-            "fieldtype": "Float",
+            "fieldtype": "data",
             "width": 100
         },
         {
             "label": _("UNK Standby Menit"),
             "fieldname": "unk_standby_menit",
-            "fieldtype": "Int",
+            "fieldtype": "data",
             "width": 100
         },
         {
             "label": _("Total Standby Aktif"),
             "fieldname": "total_stb_act_menit",
-            "fieldtype": "Int",
+            "fieldtype": "data",
             "width": 100
         },
         {
             "label": _("Total Breakdown"),
             "fieldname": "total_bd_menit",
-            "fieldtype": "Int",
+            "fieldtype": "data",
             "width": 100
         },
         {
