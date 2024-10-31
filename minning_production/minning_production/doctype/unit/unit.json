@@ -8,8 +8,8 @@
  "field_order": [
   "merk_unit",
   "unit_type",
-  "kelas",
   "column_break_cvdd",
+  "kelas",
   "model",
   "no_lambung",
   "section_break_tjki",
@@ -39,8 +39,9 @@
   },
   {
    "fieldname": "kelas",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Kelas",
+   "options": "Unit Class",
    "reqd": 1
   },
   {
@@ -60,14 +61,15 @@
   },
   {
    "fieldname": "model",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "label": "Model",
+   "options": "Unit Model",
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-29 13:56:00.333448",
+ "modified": "2024-10-31 10:50:12.030127",
  "modified_by": "Administrator",
  "module": "Minning Production",
  "name": "Unit",
@@ -87,7 +89,6 @@
    "write": 1
   }
  ],
- "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

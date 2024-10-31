@@ -8,25 +8,24 @@ from datetime import datetime, timedelta
 
 class Shift(Document):
     def before_save(self):
-        self.total_hm = calculate_total_hm(self.hour_meter_start, self.hour_meter_stop)
-        self.total_jam_produksi = calculate_total_jam_produksi(self.jam_produksi_start, self.jam_produksi_stop)
-        self.unk_standby_menit = calculate_unk_standby_menit(self.total_hm, self.total_stb_act_menit, self.total_bd_menit)
+        total_hm = calculate_total_hm(self.hour_meter_start, self.hour_meter_stop)
+        # total_bd_menit = get_total_breakdown(self.name)
         
-        self.total_stb_act_menit = get_total_standby(self.name)
-        total_bd_menit = get_total_breakdown(self.name)
-        self.total_bd_menit = total_bd_menit
+        self.total_hm = total_hm
+        self.total_jam_produksi = calculate_total_jam_produksi(self.jam_produksi_start, self.jam_produksi_stop)
+        # self.total_stb_act_menit = get_total_standby(self.name)
+        # self.total_bd_menit = get_total_breakdown(self.name)
 
-        self.pa = calculate_pa(total_bd_menit)
-        self.bd = calculate_bd(total_bd_menit)
-        self.ua = calculate_ua(self.total_hm, total_bd_menit)
+        self.pa = calculate_pa(self.total_bd_menit)
+        self.bd = calculate_bd(self.total_bd_menit)
+        self.ua = calculate_ua(self.total_hm, self.total_bd_menit)
+        pass
 
-@frappe.whitelist()
 def calculate_total_hm(hm_mulai, hm_selesai):
     if hm_mulai and hm_selesai:
         total_hm = float(hm_selesai) - float(hm_mulai)
         return round(total_hm, 2)
     
-@frappe.whitelist()
 def calculate_total_jam_produksi(jam_produksi_mulai, jam_produksi_selesai):
     if jam_produksi_mulai and jam_produksi_selesai:
         format_waktu = "%H:%M:%S"
@@ -56,47 +55,34 @@ def calculate_total_jam_produksi(jam_produksi_mulai, jam_produksi_selesai):
             raise ValueError("jam_produksi_mulai dan jam_produksi_selesai harus berupa string waktu.")
     else:
         return 0  #
-    
-@frappe.whitelist()
-def calculate_unk_standby_menit(total_hm, total_stb_act_menit, total_bd_menit):
-    unk_stb_menit = 0
-    
-    if not isinstance(total_hm, str) and not isinstance(total_stb_act_menit, str) and not isinstance(total_bd_menit, str):
-        if ((total_hm * 60) + total_stb_act_menit + total_bd_menit < 720):
-            unk_stb_menit = 720 - (total_hm * 60) - total_stb_act_menit - total_bd_menit
-        elif ((total_hm * 60) + total_stb_act_menit > 720):
-            unk_stb_menit = "Cek Standby"
-        else:
-            unk_stb_menit = 0
-            
-        return unk_stb_menit
 
-@frappe.whitelist()
-def get_total_standby(name):
-    total_standby = 0
+# def get_total_standby(name):
+#     total_standby = 0
 
-    delay_times = frappe.get_all('Delay Time Shift Activity Table', filters={'parent': name}, fields=['menit'])
-    idle_times = frappe.get_all('Idle Time Shift Activity Table', filters={'parent': name}, fields=['menit'])
+#     delay_times = frappe.get_all('Delay Time Shift Activity Table', filters={'parent': name}, fields=['menit'])
+#     idle_times = frappe.get_all('Idle Time Shift Activity Table', filters={'parent': name}, fields=['menit'])
 
-    for delay in delay_times:
-        total_standby += int(delay.menit) or 0
+#     for delay in delay_times:
+#         total_standby += int(delay.get("menit") or 0)
 
-    for idle in idle_times:
-        total_standby += int(idle.menit) or 0
+#     for idle in idle_times:
+#         total_standby += int(idle.get("menit") or 0)
         
-    print(f'Total Standby: {total_standby}')
+#     print(f'Total Standby: {total_standby}')
 
-    return total_standby
+#     return total_standby
 
-@frappe.whitelist()
-def get_total_breakdown(name):
-	breakdown_times = frappe.get_all('Maintenance Time Shift Activity Table', filters={'parent': name}, fields=['menit'])
-	total_breakdown = 0
+# def get_total_breakdown(name):
+#     breakdown_times = frappe.get_list('Maintenance Time Shift Activity Table', filters={'parent': name}, fields=['menit'])
+#     print('Breakdown Times:', breakdown_times)
+#     total_breakdown = 0
 
-	for breakdown in breakdown_times:
-		total_breakdown += int(breakdown.menit) or 0
+#     for breakdown in breakdown_times:
+#         total_breakdown += int(breakdown.get("menit") or 0)
 
-	return total_breakdown
+#     print(f'Total Breakdown: {total_breakdown}')
+    
+#     return total_breakdown
 
 @frappe.whitelist()
 def calculate_pa(total_bd_menit):

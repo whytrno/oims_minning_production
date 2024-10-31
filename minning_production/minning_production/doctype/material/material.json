@@ -8,7 +8,8 @@
  "field_order": [
   "kode",
   "nama",
-  "volume_sampling_vesel"
+  "volume_sampling_vesel",
+  "satuan"
  ],
  "fields": [
   {
@@ -30,14 +31,20 @@
   {
    "allow_in_quick_entry": 1,
    "fieldname": "volume_sampling_vesel",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Volume Sampling Vesel"
+  },
+  {
+   "fieldname": "satuan",
+   "fieldtype": "Select",
+   "label": "Satuan",
+   "options": "BCM\nTon"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-30 11:38:17.078485",
+ "modified": "2024-10-30 12:00:49.076853",
  "modified_by": "Administrator",
  "module": "Minning Production",
  "name": "Material",

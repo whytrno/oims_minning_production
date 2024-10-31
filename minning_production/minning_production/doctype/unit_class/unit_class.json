@@ -1,0 +1,73 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{jenis_alat}-{kelas}",
+ "creation": "2024-10-30 12:09:03.388570",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "jenis_alat",
+  "column_break_sdmp",
+  "kelas",
+  "section_break_uiyi",
+  "material_vesel"
+ ],
+ "fields": [
+  {
+   "fieldname": "jenis_alat",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Jenis Alat",
+   "options": "Unit Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "kelas",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Kelas",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_sdmp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_uiyi",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "material_vesel",
+   "fieldtype": "Table",
+   "label": "Material Vesel",
+   "options": "Unit Material Vesel Table",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-10-31 10:49:59.765705",
+ "modified_by": "Administrator",
+ "module": "Minning Production",
+ "name": "Unit Class",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

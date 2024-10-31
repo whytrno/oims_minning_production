@@ -36,12 +36,11 @@
   "report_tab",
   "report_section",
   "total_hm",
-  "total_ritasi",
-  "total_stb_act_menit",
+  "total_ritase",
+  "total_bd_menit",
   "column_break_alze",
   "total_jam_produksi",
-  "unk_standby_menit",
-  "total_bd_menit",
+  "total_stb_act_menit",
   "section_break_udbc",
   "pa",
   "column_break_zczh",
@@ -151,38 +150,25 @@
    "label": "Report"
   },
   {
-   "default": "-",
+   "default": "0",
    "fieldname": "total_hm",
    "fieldtype": "Data",
    "label": "Total HM",
    "read_only": 1
   },
   {
-   "default": "-",
-   "fieldname": "total_ritasi",
-   "fieldtype": "Data",
-   "label": "Total Ritasi",
-   "read_only": 1
-  },
-  {
-   "default": "-",
-   "fieldname": "total_stb_act_menit",
-   "fieldtype": "Data",
-   "label": "Total STB ACT (Menit)"
-  },
-  {
    "fieldname": "column_break_alze",
    "fieldtype": "Column Break"
   },
   {
-   "default": "-",
+   "default": "0",
    "fieldname": "total_jam_produksi",
    "fieldtype": "Data",
    "label": "Total Jam Operator",
    "read_only": 1
   },
   {
-   "default": "-",
+   "default": "0",
    "fieldname": "total_bd_menit",
    "fieldtype": "Data",
    "label": "Total BD (Menit)",
@@ -196,13 +182,6 @@
    "fieldname": "remark",
    "fieldtype": "Text",
    "label": "Remark"
-  },
-  {
-   "default": "-",
-   "fieldname": "unk_standby_menit",
-   "fieldtype": "Data",
-   "label": "UNK Standby (Menit)",
-   "read_only": 1
   },
   {
    "fieldname": "section_break_udbc",
@@ -291,11 +270,25 @@
    "fieldname": "report_tab",
    "fieldtype": "Tab Break",
    "label": "Report"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_ritase",
+   "fieldtype": "Data",
+   "label": "Total Ritase",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "total_stb_act_menit",
+   "fieldtype": "Data",
+   "label": "Total STB ACT (Menit)",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-30 08:39:36.051673",
+ "modified": "2024-10-31 15:11:01.097132",
  "modified_by": "Administrator",
  "module": "Minning Production",
  "name": "Shift",
