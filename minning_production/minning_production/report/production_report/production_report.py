@@ -7,16 +7,23 @@ from frappe.query_builder.functions import Count, Extract, Sum
 from frappe.utils import cint, cstr, getdate, add_days, date_diff
 
 Filters = frappe._dict
-
 def execute(filters=Filters):
-    # if not (filters.month and filters.year):
-    #     filters.month, filters.year = getdate().month, getdate().year
+    if not (filters.month and filters.year):
+        filters.month, filters.year = getdate().month, getdate().year
         
     chart_data = get_chart_data(filters)
     columns = get_columns()
-    data = frappe.get_all("Shift", fields=["name", "operator", "total_hm", "total_jam_produksi", "total_ritasi", "unk_standby_menit", "total_stb_act_menit", "total_bd_menit", "ua", "pa", "bd"], filters=filters)
+    data = get_data(filters)
     
     return columns, data, None, chart_data
+
+def get_data(filters):
+    data = frappe.get_all(
+        "Shift", 
+        fields=["name", "tanggal_shift", "unit", "tipe_shift", "operator", "total_hm", "total_jam_produksi", "total_ritasi", "unk_standby_menit", "total_stb_act_menit", "total_bd_menit", "ua", "pa", "bd"], 
+    )
+    
+    return data
 
 def get_columns():
     return [
@@ -25,6 +32,25 @@ def get_columns():
             "fieldname": "name",
             "fieldtype": "Link",
             "options": "Shift",
+            "width": 50
+        },
+        {
+            "label": _("Date"),
+            "fieldname": "tanggal_shift",
+            "fieldtype": "Data",
+            "width": 130
+        },
+        {
+            "label": _("Unit"),
+            "fieldname": "unit",
+            "fieldtype": "Link",
+            "options": "Unit",
+            "width": 100
+        },
+        {
+            "label": _("Shift Type"),
+            "fieldname": "tipe_shift",
+            "fieldtype": "Data",
             "width": 100
         },
         {
@@ -43,7 +69,7 @@ def get_columns():
             "label": _("Total Jam Operator"),
             "fieldname": "total_jam_produksi",
             "fieldtype": "data",
-            "width": 100
+            "width": 155
         },
         {
             "label": _("Total Ritasi"),
@@ -55,19 +81,19 @@ def get_columns():
             "label": _("UNK Standby Menit"),
             "fieldname": "unk_standby_menit",
             "fieldtype": "data",
-            "width": 100
+            "width": 155
         },
         {
             "label": _("Total Standby Aktif"),
             "fieldname": "total_stb_act_menit",
             "fieldtype": "data",
-            "width": 100
+            "width": 155
         },
         {
             "label": _("Total Breakdown"),
             "fieldname": "total_bd_menit",
             "fieldtype": "data",
-            "width": 100
+            "width": 155
         },
         {
             "label": _("UA"),

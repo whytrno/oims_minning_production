@@ -11,9 +11,12 @@
   "lokasi_front",
   "lokasi_disposal",
   "jarak_buang",
+  "column_break_dpea",
   "ritase",
   "exavator",
-  "reset"
+  "reset",
+  "sampling_vesel",
+  "muatan"
  ],
  "fields": [
   {
@@ -60,6 +63,7 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Exavator",
+   "link_filters": "[[\"Unit\",\"unit_type\",\"=\",\"Excavator\"]]",
    "options": "Unit"
   },
   {
@@ -75,12 +79,30 @@
    "fieldtype": "Button",
    "in_list_view": 1,
    "label": "Reset"
+  },
+  {
+   "fieldname": "sampling_vesel",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Sampling Vesel",
+   "read_only": 1
+  },
+  {
+   "fieldname": "muatan",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Muatan",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_dpea",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-31 11:42:13.877234",
+ "modified": "2024-11-01 10:17:41.755712",
  "modified_by": "Administrator",
  "module": "Minning Production",
  "name": "Ritase Table",

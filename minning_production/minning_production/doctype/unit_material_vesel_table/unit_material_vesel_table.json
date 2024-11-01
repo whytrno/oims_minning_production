@@ -28,6 +28,7 @@
   },
   {
    "default": "-",
+   "fetch_from": "material.satuan",
    "fieldname": "satuan",
    "fieldtype": "Data",
    "in_list_view": 1,
@@ -38,7 +39,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-31 10:33:33.577393",
+ "modified": "2024-10-31 17:16:24.869006",
  "modified_by": "Administrator",
  "module": "Minning Production",
  "name": "Unit Material Vesel Table",

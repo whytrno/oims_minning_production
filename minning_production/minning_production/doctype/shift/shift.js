@@ -4,6 +4,7 @@
 let total_bd_menit = 0;
 let total_stb_act_menit = 0;
 let total_ritase = 0;
+let material_sampling_vesel_unit = null;
 
 frappe.ui.form.on("Shift", {
 	refresh(frm) {
@@ -28,6 +29,27 @@ frappe.ui.form.on("Shift", {
     
         frm.refresh_field('data_ritase');
     },
+    data_ritase: function (frm) {
+        
+    },
+    unit: function (frm) {
+        if(frm.doc.unit){
+            frappe.call({
+                method: "minning_production.minning_production.doctype.shift.shift.get_sampling_vesel_volume",
+                args: {
+                    unit_name: frm.doc.unit,
+                },
+                callback: function (r) {
+                    if (r.message) {
+                        const materialVeselData = r.message;
+                        material_sampling_vesel_unit = materialVeselData
+                    } else {
+                        console.warn("Tidak ada data di Shift Activity Type atau response kosong.");
+                    }
+                },
+            });
+        }
+    },
 
     onload(frm) {
         // aktifitas_produktif = frm.doc.aktifitas_produktif;
@@ -35,6 +57,7 @@ frappe.ui.form.on("Shift", {
         aktifitas_idle = frm.doc.aktifitas_idle;
         aktifitas_maintenance = frm.doc.aktifitas_maintenance;
         data_ritase = frm.doc.data_ritase;
+        report_muatan = frm.doc.report_muatan;
 
         // Bersihkan tabel aktifitas jika memang sudah ada data di table ketika di load
         if (!aktifitas_delay) {
@@ -107,207 +130,139 @@ frappe.ui.form.on("Shift", {
                     }
                 }
             });
-        }
+        }   
     }
 });
+
+function updateMenit(frm, row, totalVarName) {
+    // Pastikan `totalVarName` memiliki nilai awal sebagai angka
+    frm[totalVarName] = frm[totalVarName] || 0;
+
+    if (row.waktu_mulai && row.waktu_selesai) {
+        let waktu_mulai = moment(row.waktu_mulai, "HH:mm:ss");
+        let waktu_selesai = moment(row.waktu_selesai, "HH:mm:ss");
+
+        if (waktu_mulai.isValid() && waktu_selesai.isValid()) {
+            let selisih_menit = waktu_selesai.diff(waktu_mulai, 'minutes');
+
+            // Periksa jika row.menit terdefinisi; jika tidak, anggap nilainya 0
+            row.menit = row.menit || 0;
+
+            // Update nilai total menit
+            frm[totalVarName] = (frm[totalVarName] - row.menit) + selisih_menit; // Perbaharui total dengan selisih baru
+            row.menit = selisih_menit;
+
+            console.log(row.menit);
+            console.log(frm[totalVarName]);
+
+            frm.set_value(totalVarName, frm[totalVarName]);
+            frm.refresh_field(row.parentfield);
+        } else {
+            console.error("Format waktu tidak valid.");
+        }
+    } else {
+        row.menit = 0;
+    }
+}
+
+// Fungsi umum untuk reset waktu dan menit
+function resetMenit(frm, row, totalVarName) {
+    frm[totalVarName] -= row.menit || 0;
+    row.waktu_mulai = "";
+    row.waktu_selesai = "";
+    row.menit = 0;
+
+    frm.set_value(totalVarName, frm[totalVarName]);
+    frm.refresh_field(row.parentfield);
+}
 
 frappe.ui.form.on('Delay Time Shift Activity Table', {
     waktu_mulai: function(frm, cdt, cdn) {
         let row = locals[cdt][cdn];
-        
-        if (row.waktu_mulai && row.waktu_selesai) {
-            // Konversi waktu mulai dan akhir menggunakan moment.js
-            let waktu_mulai = moment(row.waktu_mulai, "HH:mm:ss"); // Sesuaikan formatnya dengan field waktu
-            let waktu_selesai = moment(row.waktu_selesai, "HH:mm:ss");
-
-            if (waktu_mulai.isValid() && waktu_selesai.isValid()) {
-                // Hitung selisih dalam menit
-                let selisih_menit = waktu_selesai.diff(waktu_mulai, 'minutes');
-
-                // Set nilai field Menit
-                total_stb_act_menit -= row.menit;
-                total_stb_act_menit += selisih_menit;
-                row.menit = selisih_menit;
-
-                frm.set_value('total_stb_act_menit', total_stb_act_menit);
-                frm.refresh_field('aktifitas_delay');
-            } else {
-                console.error("Format waktu tidak valid.");
-            }
-        } else {
-            row.menit = 0;
-        }
+        updateMenit(frm, row, 'total_stb_act_menit');
     },
     waktu_selesai: function(frm, cdt, cdn) {
         let row = locals[cdt][cdn];
-        
-        if (row.waktu_mulai && row.waktu_selesai) {
-            // Konversi waktu mulai dan akhir menggunakan moment.js
-            let waktu_mulai = moment(row.waktu_mulai, "HH:mm:ss"); // Sesuaikan formatnya dengan field waktu
-            let waktu_selesai = moment(row.waktu_selesai, "HH:mm:ss");
-
-            if (waktu_mulai.isValid() && waktu_selesai.isValid()) {
-                // Hitung selisih dalam menit
-                let selisih_menit = waktu_selesai.diff(waktu_mulai, 'minutes');
-
-                // Set nilai field Menit
-                total_stb_act_menit -= row.menit;
-                total_stb_act_menit += selisih_menit;
-                row.menit = selisih_menit;
-
-                frm.set_value('total_stb_act_menit', total_stb_act_menit);
-                frm.refresh_field('aktifitas_delay');
-            } else {
-                console.error("Format waktu tidak valid.");
-            }
-        } else {
-            row.menit = 0;
-        }
+        updateMenit(frm, row, 'total_stb_act_menit');
     },
     reset: function(frm, cdt, cdn) {
         let row = locals[cdt][cdn];
-        row.waktu_mulai = "";
-        row.waktu_selesai = "";
-
-        total_stb_act_menit -= row.menit;
-        row.menit = 0;
-        frm.set_value('total_stb_act_menit', total_stb_act_menit);
-
-        frm.refresh_field('aktifitas_delay');
+        resetMenit(frm, row, 'total_stb_act_menit');
     }
 });
 
 frappe.ui.form.on('Idle Time Shift Activity Table', {
     waktu_mulai: function(frm, cdt, cdn) {
         let row = locals[cdt][cdn];
-        
-        if (row.waktu_mulai && row.waktu_selesai) {
-            // Konversi waktu mulai dan akhir menggunakan moment.js
-            let waktu_mulai = moment(row.waktu_mulai, "HH:mm:ss"); // Sesuaikan formatnya dengan field waktu
-            let waktu_selesai = moment(row.waktu_selesai, "HH:mm:ss");
-
-            if (waktu_mulai.isValid() && waktu_selesai.isValid()) {
-                // Hitung selisih dalam menit
-                let selisih_menit = waktu_selesai.diff(waktu_mulai, 'minutes');
-
-                // Set nilai field Menit
-                total_stb_act_menit -= row.menit;
-                total_stb_act_menit += selisih_menit;
-                row.menit = selisih_menit;
-
-                frm.set_value('total_stb_act_menit', total_stb_act_menit);
-
-                frm.refresh_field('aktifitas_idle');
-            } else {
-                console.error("Format waktu tidak valid.");
-            }
-        } else {
-            row.menit = 0;
-        }
+        updateMenit(frm, row, 'total_stb_act_menit');
     },
     waktu_selesai: function(frm, cdt, cdn) {
         let row = locals[cdt][cdn];
-        
-        if (row.waktu_mulai && row.waktu_selesai) {
-            // Konversi waktu mulai dan akhir menggunakan moment.js
-            let waktu_mulai = moment(row.waktu_mulai, "HH:mm:ss"); // Sesuaikan formatnya dengan field waktu
-            let waktu_selesai = moment(row.waktu_selesai, "HH:mm:ss");
-
-            if (waktu_mulai.isValid() && waktu_selesai.isValid()) {
-                // Hitung selisih dalam menit
-                let selisih_menit = waktu_selesai.diff(waktu_mulai, 'minutes');
-
-                // Set nilai field Menit
-                total_stb_act_menit -= row.menit;
-                total_stb_act_menit += selisih_menit;
-                row.menit = selisih_menit;
-
-                frm.set_value('total_stb_act_menit', total_stb_act_menit);
-                frm.refresh_field('aktifitas_idle');
-            } else {
-                console.error("Format waktu tidak valid.");
-            }
-        } else {
-            row.menit = 0;
-        }
+        updateMenit(frm, row, 'total_stb_act_menit');
     },
     reset: function(frm, cdt, cdn) {
         let row = locals[cdt][cdn];
-        row.waktu_mulai = "";
-        row.waktu_selesai = "";
-        
-        total_stb_act_menit -= row.menit;
-        row.menit = 0;
-        frm.set_value('total_stb_act_menit', total_stb_act_menit);
-
-        frm.refresh_field('aktifitas_idle');
+        resetMenit(frm, row, 'total_stb_act_menit');
     }
 });
 
 frappe.ui.form.on('Maintenance Time Shift Activity Table', {
     waktu_mulai: function(frm, cdt, cdn) {
         let row = locals[cdt][cdn];
-        
-        if (row.waktu_mulai && row.waktu_selesai) {
-            // Konversi waktu mulai dan akhir menggunakan moment.js
-            let waktu_mulai = moment(row.waktu_mulai, "HH:mm:ss"); // Sesuaikan formatnya dengan field waktu
-            let waktu_selesai = moment(row.waktu_selesai, "HH:mm:ss");
-
-            if (waktu_mulai.isValid() && waktu_selesai.isValid()) {
-                // Hitung selisih dalam menit
-                let selisih_menit = waktu_selesai.diff(waktu_mulai, 'minutes');
-
-                total_bd_menit -= row.menit;
-                total_bd_menit += selisih_menit;
-                row.menit = selisih_menit;
-
-                frm.set_value('total_bd_menit', total_bd_menit);
-                frm.refresh_field('aktifitas_maintenance');
-            } else {
-                console.error("Format waktu tidak valid.");
-            }
-        }
+        updateMenit(frm, row, 'total_bd_menit');
     },
     waktu_selesai: function(frm, cdt, cdn) {
         let row = locals[cdt][cdn];
-        
-        if (row.waktu_mulai && row.waktu_selesai) {
-            // Konversi waktu mulai dan akhir menggunakan moment.js
-            let waktu_mulai = moment(row.waktu_mulai, "HH:mm:ss"); // Sesuaikan formatnya dengan field waktu
-            let waktu_selesai = moment(row.waktu_selesai, "HH:mm:ss");
-
-            if (waktu_mulai.isValid() && waktu_selesai.isValid()) {
-                // Hitung selisih dalam menit
-                let selisih_menit = waktu_selesai.diff(waktu_mulai, 'minutes');
-
-                total_bd_menit -= row.menit;
-                total_bd_menit += selisih_menit;
-                row.menit = selisih_menit;
-
-                frm.set_value('total_bd_menit', total_bd_menit);
-                frm.refresh_field('aktifitas_maintenance');
-            } else {
-                console.error("Format waktu tidak valid.");
-            }
-        }
+        updateMenit(frm, row, 'total_bd_menit');
     },
     reset: function(frm, cdt, cdn) {
         let row = locals[cdt][cdn];
-        row.waktu_mulai = null;
-        row.waktu_selesai = null;
-        
-        // Kurangi total_bd_menit dengan nilai sebelumnya
-        total_bd_menit -= row.menit;
-        row.menit = 0;
-        frm.set_value('total_bd_menit', total_bd_menit);
-
-        frm.refresh_field('aktifitas_maintenance');
+        resetMenit(frm, row, 'total_bd_menit');
     }
 });
 
 frappe.ui.form.on('Ritase Table', {
+    material: function(frm, cdt, cdn){
+        let row = locals[cdt][cdn];
+        if (!frm.doc.unit) {
+            frappe.msgprint(__('Silahkan pilih Unit terlebih dahulu sebelum mengisi data Ritase.'));
+            frappe.validated = false;
+
+            row.material = "";
+            row.lokasi_front = "";
+            row.lokasi_disposal = "";
+            row.jarak_buang = 0;
+            row.ritase = 0;
+
+            return;
+        }
+
+        if(row.material){
+            let material = material_sampling_vesel_unit.find(material => material.material === row.material);
+            row.sampling_vesel = material ? material.sampling_vesel_volume : 0;
+
+            if(row.ritase && row.sampling_vesel){
+                row.muatan = row.ritase * row.sampling_vesel;
+            }
+
+            frm.refresh_field('data_ritase');
+        }
+    },
     ritase: function(frm, cdt, cdn) {
         let row = locals[cdt][cdn];
+
+        if (!frm.doc.unit) {
+            frappe.msgprint(__('Silahkan pilih Unit terlebih dahulu sebelum mengisi data Ritase.'));
+            frappe.validated = false;
+
+            row.material = "";
+            row.lokasi_front = "";
+            row.lokasi_disposal = "";
+            row.jarak_buang = 0;
+            row.ritase = 0;
+
+            return;
+        }
 
         if (row.ritase === 0) {
             if (row.__previous_ritase !== undefined) {
@@ -325,11 +280,15 @@ frappe.ui.form.on('Ritase Table', {
             row.__previous_ritase = row.ritase; // Update previous ritase
         }
 
+        if(row.material && row.sampling_vesel){
+            row.muatan = row.ritase * row.sampling_vesel;
+        }
+
+        frm.refresh_field('data_ritase');
         frm.set_value('total_ritase', total_ritase);
     },
     reset: function(frm, cdt, cdn) {
         let row = locals[cdt][cdn];
-        console.log(row);
 
         // If ritase is not 0, subtract it from total_ritase
         if (row.ritase) {

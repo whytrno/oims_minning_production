@@ -15,10 +15,11 @@ class Shift(Document):
         self.total_jam_produksi = calculate_total_jam_produksi(self.jam_produksi_start, self.jam_produksi_stop)
         # self.total_stb_act_menit = get_total_standby(self.name)
         # self.total_bd_menit = get_total_breakdown(self.name)
-
-        self.pa = calculate_pa(self.total_bd_menit)
-        self.bd = calculate_bd(self.total_bd_menit)
-        self.ua = calculate_ua(self.total_hm, self.total_bd_menit)
+        total_bd_menit = int(self.total_bd_menit)
+        
+        self.pa = calculate_pa(total_bd_menit)
+        self.bd = calculate_bd(total_bd_menit)
+        self.ua = calculate_ua(self.total_hm, total_bd_menit)
         pass
 
 def calculate_total_hm(hm_mulai, hm_selesai):
@@ -111,3 +112,26 @@ def calculate_ua(total_hm, total_bd_menit):
         ua = 0
 
     return round(ua, 2)
+
+@frappe.whitelist()
+def get_sampling_vesel_volume(unit_name):
+    # Step 1: Dapatkan Kelas dari Unit
+    unit_doc = frappe.get_doc("Unit", unit_name)
+    kelas_name = unit_doc.kelas  # Asumsi field 'kelas' adalah link ke Doctype 'Unit Class'
+
+    if not kelas_name:
+        frappe.throw("Unit tidak memiliki kelas yang terkait")
+
+    # Step 2: Dapatkan Material Vesel yang terkait dengan Kelas dari Doctype Unit Class
+    kelas_doc = frappe.get_doc("Unit Class", kelas_name)
+    material_vesel_data = []
+
+    if kelas_doc.get('material_vesel'):  # Asumsi 'material_vesel' adalah nama field child table di Unit Class
+        for item in kelas_doc.material_vesel:
+            material_vesel_data.append({
+                'material': item.material,  # Sesuaikan nama field jika berbeda
+                'sampling_vesel_volume': item.sampling_vesel_volume,
+                'satuan': item.satuan  # Field lain yang Anda butuhkan
+            })
+
+    return material_vesel_data
