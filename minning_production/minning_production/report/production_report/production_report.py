@@ -20,7 +20,7 @@ def execute(filters):
 def get_data(filters):
     data = frappe.get_all(
         "Shift", 
-        fields=["name", "tanggal_shift", "unit", "tipe_shift", "operator", "total_hm", "total_jam_produksi", "total_ritase", "unk_standby_menit", "total_stb_act_menit", "total_bd_menit", "ua", "pa", "bd"], 
+        fields=["name", "tanggal_shift", "unit", "tipe_shift", "operator", "total_hm", "total_jam_produksi", "total_ritase", "total_stb_act_menit", "total_bd_menit", "ua", "pa", "bd"], 
     )
     
     return data
@@ -76,12 +76,6 @@ def get_columns():
             "fieldname": "total_ritase",
             "fieldtype": "data",
             "width": 100
-        },
-        {
-            "label": _("UNK Standby Menit"),
-            "fieldname": "unk_standby_menit",
-            "fieldtype": "data",
-            "width": 155
         },
         {
             "label": _("Total Standby Aktif"),
