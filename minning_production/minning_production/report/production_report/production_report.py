@@ -6,11 +6,11 @@ from frappe import _
 from frappe.query_builder.functions import Count, Extract, Sum
 from frappe.utils import cint, cstr, getdate, add_days, date_diff
 
-Filters = frappe._dict
-def execute(filters=Filters):
-    if not (filters.month and filters.year):
-        filters.month, filters.year = getdate().month, getdate().year
-        
+# Filters = frappe._dict
+# def execute(filters=Filters):
+    # if not (filters.month and filters.year):
+    #     filters.month, filters.year = getdate().month, getdate().year
+def execute(filters):        
     chart_data = get_chart_data(filters)
     columns = get_columns()
     data = get_data(filters)

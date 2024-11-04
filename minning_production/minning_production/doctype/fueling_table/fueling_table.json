@@ -13,9 +13,10 @@
  "fields": [
   {
    "fieldname": "pengisi_bahan_bakar",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Pengisi Bahan Bakar",
+   "options": "Karyawan",
    "reqd": 1
   },
   {
@@ -39,7 +40,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-29 12:27:48.835845",
+ "modified": "2024-11-01 12:23:42.833539",
  "modified_by": "Administrator",
  "module": "Minning Production",
  "name": "Fueling Table",
