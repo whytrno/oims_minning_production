@@ -74,7 +74,9 @@
   {
    "fieldname": "qr_code",
    "fieldtype": "Attach Image",
-   "label": "QR Code"
+   "hidden": 1,
+   "label": "QR Code",
+   "read_only": 1
   },
   {
    "fieldname": "qr_code_image",
@@ -102,7 +104,7 @@
  "image_field": "foto_unit",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-13 07:54:24.025229",
+ "modified": "2024-11-20 10:00:24.833373",
  "modified_by": "Administrator",
  "module": "Minning Production",
  "name": "Unit",
