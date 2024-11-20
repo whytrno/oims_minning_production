@@ -40,12 +40,13 @@
    "fieldname": "material_vesel",
    "fieldtype": "Table",
    "label": "Material Vesel",
-   "options": "Unit Material Vesel Table"
+   "options": "Unit Material Vesel Table",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-04 09:50:56.833828",
+ "modified": "2024-11-04 09:56:59.583202",
  "modified_by": "Administrator",
  "module": "Minning Production",
  "name": "Unit Class",

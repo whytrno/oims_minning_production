@@ -6,6 +6,7 @@
  "engine": "InnoDB",
  "field_order": [
   "operator",
+  "nama_operator",
   "unit",
   "column_break_gpdw",
   "tipe_shift",
@@ -286,11 +287,19 @@
    "fieldtype": "Data",
    "label": "Total STB ACT (Menit)",
    "read_only": 1
+  },
+  {
+   "default": "-",
+   "fetch_from": "operator.nama_lengkap",
+   "fieldname": "nama_operator",
+   "fieldtype": "Data",
+   "label": "Nama Operator",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-01 12:22:53.006814",
+ "modified": "2024-11-12 14:55:21.974213",
  "modified_by": "Administrator",
  "module": "Minning Production",
  "name": "Shift",

@@ -8,12 +8,17 @@
  "field_order": [
   "merk_unit",
   "unit_type",
+  "foto_unit",
   "column_break_cvdd",
   "kelas",
   "model",
   "no_lambung",
+  "fuel_capacity",
+  "column_break_ylsh",
+  "qr_code_image",
   "section_break_tjki",
-  "kondisi"
+  "kondisi",
+  "qr_code"
  ],
  "fields": [
   {
@@ -65,11 +70,39 @@
    "label": "Model",
    "options": "Unit Model",
    "reqd": 1
+  },
+  {
+   "fieldname": "qr_code",
+   "fieldtype": "Attach Image",
+   "label": "QR Code"
+  },
+  {
+   "fieldname": "qr_code_image",
+   "fieldtype": "Image",
+   "label": "QR Code",
+   "options": "qr_code",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ylsh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "foto_unit",
+   "fieldtype": "Attach Image",
+   "label": "Foto Unit"
+  },
+  {
+   "fieldname": "fuel_capacity",
+   "fieldtype": "Int",
+   "label": "Fuel Capacity (Litter)",
+   "reqd": 1
   }
  ],
+ "image_field": "foto_unit",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-31 10:50:12.030127",
+ "modified": "2024-11-13 07:54:24.025229",
  "modified_by": "Administrator",
  "module": "Minning Production",
  "name": "Unit",
