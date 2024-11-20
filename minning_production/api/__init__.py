@@ -38,11 +38,11 @@ def get_unit_info(unit: str) -> dict:
 
 	if not data.get("foto_unit"):
 		if data.get("unit_type") == "EXCAVATOR":
-			data["foto_unit"] = "http://localhost:8000/files/excavator.jpg"
+			data["foto_unit"] = "https://new-oims.orecon.co.id/files/excavator.jpg"
 		elif data.get("unit_type") == "DUMP TRUCK":
-			data["foto_unit"] = "http://localhost:8000/files/dump-truck.jpg"
+			data["foto_unit"] = "https://new-oims.orecon.co.id/files/dump-truck.jpg"
 		else:
-			data["foto_unit"] = "http://localhost:8000/files/excavator.jpg"
+			data["foto_unit"] = "https://new-oims.orecon.co.id/files/excavator.jpg"
 	
 	return data
 
