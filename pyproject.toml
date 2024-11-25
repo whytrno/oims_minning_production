@@ -10,6 +10,7 @@ dynamic = ["version"]
 dependencies = [
     # "frappe~=15.0.0" # Installed and managed by bench.
     "docxtpl~=0.19.0"
+    "qrcode~=8.0"
 ]
 
 [build-system]
