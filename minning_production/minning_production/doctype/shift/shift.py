@@ -12,6 +12,7 @@ class Shift(Document):
         # total_bd_menit = get_total_breakdown(self.name)
         
         self.total_hm = total_hm
+        # print(f'self: {self.hour_meter_start} - {self.hour_meter_stop}, {self.jam_produksi_start} - {self.jam_produksi_stop}')
         self.total_jam_produksi = calculate_total_jam_produksi(self.jam_produksi_start, self.jam_produksi_stop)
         # self.total_stb_act_menit = get_total_standby(self.name)
         # self.total_bd_menit = get_total_breakdown(self.name)
@@ -28,7 +29,14 @@ def calculate_total_hm(hm_mulai, hm_selesai):
         return round(total_hm, 2)
     
 def calculate_total_jam_produksi(jam_produksi_mulai, jam_produksi_selesai):
-    if jam_produksi_mulai and jam_produksi_selesai:
+    # Cek apakah format waktu mengandung desimal
+    def is_valid_time_format(time_str):
+        if not time_str:
+            return False
+        # Memastikan format waktu tidak mengandung desimal setelah detik
+        return len(time_str.split('.')) == 1 and time_str.count(':') == 2
+    
+    if is_valid_time_format(jam_produksi_mulai) and is_valid_time_format(jam_produksi_selesai):
         format_waktu = "%H:%M:%S"
 
         # Cek jika jam_produksi_mulai dan jam_produksi_selesai adalah timedelta
@@ -106,12 +114,13 @@ def calculate_bd(total_bd_menit):
 
 @frappe.whitelist()
 def calculate_ua(total_hm, total_bd_menit):
-    ua = ((total_hm * 60) / (720 - total_bd_menit)) * 100
+    if total_hm and total_bd_menit:
+        ua = ((total_hm * 60) / (720 - total_bd_menit)) * 100
 
-    if (ua < 0):
-        ua = 0
+        if (ua < 0):
+            ua = 0
 
-    return round(ua, 2)
+        return round(ua, 2)
 
 @frappe.whitelist()
 def get_sampling_vesel_volume(unit_name):

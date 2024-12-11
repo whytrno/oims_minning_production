@@ -5,8 +5,8 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "jenis_operator",
   "operator",
-  "nama_operator",
   "unit",
   "column_break_gpdw",
   "tipe_shift",
@@ -107,20 +107,19 @@
   },
   {
    "fieldname": "operator",
-   "fieldtype": "Link",
+   "fieldtype": "Dynamic Link",
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Operator",
    "link_filters": "[]",
-   "options": "Karyawan",
+   "options": "jenis_operator",
    "reqd": 1
   },
   {
    "fieldname": "hour_meter_start",
    "fieldtype": "Float",
    "in_list_view": 1,
-   "label": "Start",
-   "reqd": 1
+   "label": "Start"
   },
   {
    "fieldname": "hour_meter_stop",
@@ -136,7 +135,8 @@
   {
    "fieldname": "jam_produksi_start",
    "fieldtype": "Time",
-   "label": "Start"
+   "label": "Start",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_fmsy",
@@ -145,7 +145,8 @@
   {
    "fieldname": "jam_produksi_stop",
    "fieldtype": "Time",
-   "label": "Stop"
+   "label": "Stop",
+   "reqd": 1
   },
   {
    "fieldname": "report_section",
@@ -289,17 +290,17 @@
    "read_only": 1
   },
   {
-   "default": "-",
-   "fetch_from": "operator.nama_lengkap",
-   "fieldname": "nama_operator",
-   "fieldtype": "Data",
-   "label": "Nama Operator",
-   "read_only": 1
+   "fieldname": "jenis_operator",
+   "fieldtype": "Link",
+   "label": "Jenis Operator",
+   "link_filters": "[[\"DocType\",\"name\",\"in\",[\"Karyawan\",\"Operator Vendor\"]]]",
+   "options": "DocType",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-12 14:55:21.974213",
+ "modified": "2024-12-11 10:32:59.080760",
  "modified_by": "Administrator",
  "module": "Minning Production",
  "name": "Shift",
