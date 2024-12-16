@@ -8,7 +8,8 @@
  "field_order": [
   "pengisi_bahan_bakar",
   "volume_litter",
-  "hm"
+  "hm",
+  "waktu"
  ],
  "fields": [
   {
@@ -35,12 +36,20 @@
    "label": "HM",
    "non_negative": 1,
    "reqd": 1
+  },
+  {
+   "default": "Now",
+   "fieldname": "waktu",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Waktu",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-01 12:23:42.833539",
+ "modified": "2024-12-16 10:04:52.280532",
  "modified_by": "Administrator",
  "module": "Minning Production",
  "name": "Fueling Table",

@@ -33,19 +33,18 @@ def calculate_total_jam_produksi(jam_produksi_mulai, jam_produksi_selesai):
     def is_valid_time_format(time_str):
         if not time_str:
             return False
-        # Memastikan format waktu tidak mengandung desimal setelah detik
+        if isinstance(time_str, timedelta):
+            time_str = str(time_str)  # Konversi timedelta ke string
         return len(time_str.split('.')) == 1 and time_str.count(':') == 2
+    
+    if isinstance(jam_produksi_mulai, timedelta):
+        jam_produksi_mulai = str(jam_produksi_mulai)
+    if isinstance(jam_produksi_selesai, timedelta):
+        jam_produksi_selesai = str(jam_produksi_selesai)
     
     if is_valid_time_format(jam_produksi_mulai) and is_valid_time_format(jam_produksi_selesai):
         format_waktu = "%H:%M:%S"
-
-        # Cek jika jam_produksi_mulai dan jam_produksi_selesai adalah timedelta
-        if isinstance(jam_produksi_mulai, timedelta):
-            jam_produksi_mulai = str(jam_produksi_mulai)  # Ubah ke string jika perlu
-        if isinstance(jam_produksi_selesai, timedelta):
-            jam_produksi_selesai = str(jam_produksi_selesai)  # Ubah ke string jika perlu
-
-        # Pastikan jam_produksi_mulai dan jam_produksi_selesai adalah string yang valid
+        
         if isinstance(jam_produksi_mulai, str) and isinstance(jam_produksi_selesai, str):
             # Ubah menjadi objek datetime
             jam_produksi_mulai_jam = datetime.strptime(jam_produksi_mulai, format_waktu)
@@ -63,7 +62,8 @@ def calculate_total_jam_produksi(jam_produksi_mulai, jam_produksi_selesai):
         else:
             raise ValueError("jam_produksi_mulai dan jam_produksi_selesai harus berupa string waktu.")
     else:
-        return 0  #
+        return 0
+
 
 # def get_total_standby(name):
 #     total_standby = 0

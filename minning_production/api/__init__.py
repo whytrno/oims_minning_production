@@ -85,13 +85,14 @@ def get_shift_by_unit_today(unit: str) -> dict:
 			"jam_produksi_stop": (">=", datetime.now().time()),
 		},
 		[
-			"nama_operator", "unit", "tipe_shift", "tanggal_shift", "name"
+			"jenis_operator", "operator", "unit", "tipe_shift", "tanggal_shift", "name"
 		],
 		as_dict=True
 	)
 
 	if shift:
 		shift["shift"] = f"{shift.tanggal_shift} | {shift.tipe_shift}"
+		shift["operator"] = frappe.db.get_value(shift.jenis_operator, shift.operator, "nama_lengkap")
 	
 	return shift
 
