@@ -133,6 +133,7 @@
    "label": "Jam Produksi"
   },
   {
+   "default": "06:00:00",
    "fieldname": "jam_produksi_start",
    "fieldtype": "Time",
    "label": "Start",
@@ -143,6 +144,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "default": "18:00:00",
    "fieldname": "jam_produksi_stop",
    "fieldtype": "Time",
    "label": "Stop",
@@ -300,7 +302,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-11 10:32:59.080760",
+ "modified": "2024-12-17 11:30:00.226401",
  "modified_by": "Administrator",
  "module": "Minning Production",
  "name": "Shift",

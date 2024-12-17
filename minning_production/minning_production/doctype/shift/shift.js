@@ -28,6 +28,9 @@ frappe.ui.form.on("Shift", {
         final_row.jam = end_hour + ":00";
     
         frm.refresh_field('data_ritase');
+
+        frm.set_value('jam_produksi_start', start_hour);
+        frm.set_value('jam_produksi_stop', end_hour);
     },
     data_ritase: function (frm) {
         
